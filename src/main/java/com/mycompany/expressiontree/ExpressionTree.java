@@ -14,22 +14,22 @@ class Node {
 public class ExpressionTree {
 
     public static Node buildTree(String postfix) {
-        Stack<Node> stack = new Stack<>();
+        Stack<Node> s = new Stack<>();
 
         for (int i = 0; i < postfix.length(); i++) {
-            char ch = postfix.charAt(i);
-            Node node = new Node(String.valueOf(ch));
+            char c = postfix.charAt(i);
+            Node node = new Node(String.valueOf(c));
 
-            if (ch >= '0' && ch <= '9') {
-                stack.push(node);
+            if (c >= '0' && c <= '9') {
+                s.push(node);
             } else {
-                node.right = stack.pop();
-                node.left = stack.pop();
-                stack.push(node);
+                node.right = s.pop();
+                node.left = s.pop();
+                s.push(node);
             }
         }
 
-        return stack.pop();
+        return s.pop();
     }
 
     public static int evaluate(Node root) {
@@ -46,7 +46,7 @@ public class ExpressionTree {
             case "*": return left * right;
             case "/": return left / right;
             default:
-                throw new IllegalArgumentException("Unknown operator");
+               return 0;
         }
     }
 
