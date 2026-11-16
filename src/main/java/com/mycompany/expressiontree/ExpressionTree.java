@@ -12,6 +12,15 @@ class Node {
 }
 
 public class ExpressionTree {
+    
+      public static void main(String[] args) {
+        String postfix = "53+82-*";
+
+        Node root = buildTree(postfix);
+
+        printInfix(root);
+        System.out.println("\nResult: " + evaluate(root));
+    }
 
     public static Node buildTree(String postfix) {
         Stack<Node> s = new Stack<>();
@@ -60,14 +69,5 @@ public class ExpressionTree {
             printInfix(root.right);
             System.out.print(")");
         }
-    }
-
-    public static void main(String[] args) {
-        String postfix = "53+82-*";
-
-        Node root = buildTree(postfix);
-
-        printInfix(root);
-        System.out.println("\nResult: " + evaluate(root));
     }
 }
